@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="author" content="AincodeLab">
+
+<title>Data Absen Media Sosial TPP PLD PD TA - AincodeLab</title>
+<meta name="description" content="Website data absen media sosial untuk Tenaga Pendamping Profesional (TPP) yang mencakup PLD, PD, dan TA. Pantau dan kelola keaktifan media sosial pendamping desa.">
+<meta name="keywords" content="data absen media sosial, TPP, PLD, PD, TA, pendamping desa, tenaga pendamping profesional, absen medsos, pendamping lokal desa, tenaga ahli, AincodeLab">
+
+<link rel="canonical" href="https://aincodelab.github.io/medsos">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aincodelab.github.io/medsos">
+<meta property="og:title" content="Data Absen Media Sosial TPP PLD PD TA - AincodeLab">
+<meta property="og:description" content="Pantau data absen media sosial Tenaga Pendamping Profesional (TPP): PLD, PD, dan TA. Kelola keaktifan media sosial pendamping desa secara terpusat.">
+<meta property="og:site_name" content="AincodeLab Medsos">
+<meta property="og:locale" content="id_ID">
+<meta property="og:image" content="https://aincodelab.github.io/medsos/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Data Absen Media Sosial TPP PLD PD TA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://aincodelab.github.io/medsos">
+<meta name="twitter:title" content="Data Absen Media Sosial TPP PLD PD TA - AincodeLab">
+<meta name="twitter:description" content="Pantau data absen media sosial Tenaga Pendamping Profesional (TPP): PLD, PD, dan TA.">
+<meta name="twitter:image" content="https://aincodelab.github.io/medsos/preview.jpg">
+<meta name="twitter:image:alt" content="Data Absen Media Sosial TPP PLD PD TA">
+
+<link rel="icon" type="image/png" href="https://aincodelab.github.io/medsos/favicon.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #1e7241 0%, #dfe2b5 100%);
+    min-height: 100vh;
+    padding: 24px 16px;
+    color: #333;
+  }
+  .container {
+    background: #fff;
+    max-width: 95%;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  h1 {
+    font-size: 20px; color: #1e3c72; margin-bottom: 18px;
+    text-align: center; font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .setup-banner {
+    background: #fff8e1; border-left: 4px solid #ffc107;
+    padding: 12px 16px; border-radius: 8px;
+    font-size: 13px; color: #8a6100;
+    margin-bottom: 18px; line-height: 1.6;
+  }
+  .setup-banner code {
+    background: #ffe9a8; padding: 2px 6px; border-radius: 4px;
+    font-family: 'Consolas', monospace; font-size: 12px;
+  }
+
+  .btn-group {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;
+  }
+  button {
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    padding: 12px 22px; border: none; border-radius: 10px;
+    cursor: pointer; transition: all 0.2s ease;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; flex: 1; min-width: 170px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff; box-shadow: 0 6px 18px rgba(30,60,114,0.35);
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(30,60,114,0.45);
+  }
+  .btn-secondary {
+    background: #eef1f7; color: #1e3c72; border: 1px solid #d5dbe8;
+  }
+  .btn-secondary:hover:not(:disabled) { background: #e3e8f3; }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .spinner {
+    width: 15px; height: 15px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  .btn-secondary .spinner {
+    border-color: rgba(30,60,114,0.3);
+    border-top-color: #1e3c72;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .status {
+    margin: 14px 0; padding: 11px 15px; border-radius: 10px;
+    font-size: 13px; display: none; line-height: 1.5;
+  }
+  .status.show { display: block; animation: fadeIn 0.3s ease; }
+  .status.success { background: #e6f7ec; color: #1e7a3d; border-left: 4px solid #28a745; }
+  .status.error   { background: #fdecea; color: #a11a1a; border-left: 4px solid #dc3545; }
+  .status.loading { background: #fff8e1; color: #8a6100; border-left: 4px solid #ffc107; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .table-wrap {
+    margin-top: 18px; border-radius: 12px; overflow: hidden;
+    border: 1px solid #e1e6f2; display: none;
+  }
+  .table-wrap.show { display: block; animation: fadeIn 0.4s ease; }
+  .table-header-bar {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff; padding: 11px 18px;
+    font-size: 13px; font-weight: 500;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 8px;
+  }
+  .table-header-bar .badge {
+    background: rgba(255,255,255,0.2);
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 500;
+  }
+
+  /* Filter Bar */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    align-items: flex-end;
+    padding: 14px 18px;
+    background: #f7f9ff;
+    border-bottom: 1px solid #e1e6f2;
+  }
+  .filter-bar .filter-item {
+    display: flex; flex-direction: column; min-width: 170px;
+    flex: 1; max-width: 240px;
+  }
+  .filter-bar label {
+    font-size: 12px; color: #2a5298; font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .filter-bar select {
+    padding: 8px 10px; font-family: inherit; font-size: 13px;
+    border: 1px solid #cfd6e4; border-radius: 6px;
+    background: #fff; cursor: pointer; width: 100%; color: #333;
+  }
+  .filter-bar select:focus {
+    outline: none; border-color: #2a5298;
+    box-shadow: 0 0 0 3px rgba(42,82,152,0.12);
+  }
+  .btn-reset {
+    padding: 8px 14px; font-size: 12px;
+    background: transparent; color: #2a5298;
+    border: 1px dashed #cfd6e4; border-radius: 6px;
+    flex: 0 0 auto; min-width: auto; align-self: flex-end;
+    margin-bottom: 1px;
+  }
+  .btn-reset:hover:not(:disabled) { background: #eef1f7; }
+
+  .table-scroll { overflow-x: auto; max-width: 100%; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; }
+  thead th {
+    background: #eef1f7; color: #1e3c72; font-weight: 600;
+    text-align: left; padding: 10px 14px;
+    border-bottom: 2px solid #d5dbe8;
+    white-space: nowrap;
+    position: sticky; top: 0; z-index: 1;
+    cursor: pointer; user-select: none;
+    transition: background 0.15s ease;
+    font-size: 12.5px;
+  }
+  thead th:hover { background: #e3e8f3; }
+  thead th .sort-icon {
+    display: inline-block; margin-left: 6px;
+    color: #9aa8c7; font-size: 11px; font-weight: normal;
+  }
+  thead th.sorted { background: #dbe4f5; }
+  thead th.sorted .sort-icon { color: #1e3c72; }
+
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #f0f2f7;
+    color: #333; vertical-align: top;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+  tbody tr:nth-child(even) { background: #fafbff; }
+
+  /* Baris data yang bisa diklik */
+  tbody tr.clickable { cursor: pointer; transition: background 0.15s ease; }
+  tbody tr.clickable:hover { background: #eef1f7; }
+  tbody tr.clickable.row-active { background: #dbe4f5 !important; }
+  tbody tr.clickable.row-active td { color: #1e3c72; }
+  tbody tr.clickable td:last-child { position: relative; }
+
+  .empty-msg {
+    text-align: center; padding: 40px 20px;
+    color: #999; font-size: 14px;
+  }
+
+  /* ===== Card Detail ===== */
+  tbody tr.detail-row,
+  tbody tr.detail-row:hover,
+  tbody tr.detail-row:nth-child(even) {
+    background: #fff !important;
+  }
+  tbody tr.detail-row td {
+    padding: 0 !important;
+    border-bottom: 1px solid #e1e6f2 !important;
+  }
+  .detail-card {
+    background: linear-gradient(135deg, #f7f9ff 0%, #eef1f7 100%);
+    border: 1px solid #d5dbe8;
+    border-left: 4px solid #2a5298;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 8px 6px 12px;
+    box-shadow: 0 6px 18px rgba(30,60,114,0.10);
+    animation: fadeIn 0.25s ease;
+  }
+  .detail-card .detail-title {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px;
+    font-size: 13px; font-weight: 600; color: #1e3c72;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #cfd6e4;
+  }
+  .detail-card .detail-close {
+    font-size: 12px; font-weight: 500;
+    background: #fff; color: #a11a1a;
+    border: 1px solid #f3c8c8;
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex: 0 0 auto; min-width: auto;
+  }
+  .detail-card .detail-close:hover { background: #fdecea; border-color: #dc3545; }
+  .detail-card .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px 12px;
+  }
+  .detail-card .detail-item {
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 8px 10px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e1e6f2;
+    min-width: 0;
+  }
+  .detail-card .detail-item .k {
+    font-size: 10.5px; font-weight: 600; color: #2a5298;
+    text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  .detail-card .detail-item .v {
+    font-size: 13px; color: #333; font-weight: 400;
+    word-break: break-word;
+  }
+
+  /* Tombol To The Top */
+  #toTopBtn {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 45px; height: 45px; border-radius: 50%;
+    border: none; cursor: pointer;
+    background: linear-gradient(135deg, #594bd4, #193d7a);
+    color: #fff; font-size: 22px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(30,60,114,0.45);
+    opacity: 0; visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 9999; padding: 0; flex: none; min-width: 0;
+  }
+  #toTopBtn.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+  #toTopBtn:hover {
+    background: linear-gradient(135deg, #2a5298, #1e3c72);
+    box-shadow: 0 12px 30px rgba(30,60,114,0.6);
+    transform: translateY(-3px) scale(1.05);
+  }
+  #toTopBtn:active { transform: translateY(0) scale(0.96); }
+
+  /* ===== Responsive: TABLET & MOBILE ===== */
+  @media (max-width: 900px) {
+    body { padding: 14px 10px; }
+    .container { padding: 14px; border-radius: 12px; max-width: 100%; }
+    h1 { font-size: 17px; margin-bottom: 14px; }
+
+    .btn-group { gap: 8px; }
+    .btn-group button {
+      min-width: 130px; padding: 10px 14px; font-size: 13px;
+    }
+
+    .filter-bar { padding: 12px; gap: 10px; }
+    .filter-bar .filter-item { min-width: 130px; max-width: none; }
+
+    thead th {
+      padding: 9px 10px; font-size: 12px;
+    }
+    tbody td {
+      padding: 10px 10px; font-size: 12.5px;
+    }
+    .table-header-bar { font-size: 12.5px; padding: 10px 14px; }
+
+    .detail-card { padding: 12px; margin: 6px 4px 10px; }
+    .detail-card .detail-grid {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .detail-card .detail-item { padding: 7px 9px; }
+    .detail-card .detail-item .v { font-size: 12.5px; }
+
+    #toTopBtn { bottom: 18px; right: 18px; width: 44px; height: 44px; font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Dashboard Data Medsos</h1>
+
+    <div id="setupBanner" class="setup-banner" style="display:none;">
+      ⚙️ <b>Setup:</b> Buka file <code>index.html</code>, cari baris
+      <code>const APPS_SCRIPT_URL = '...'</code>, ganti dengan URL Web App
+      Apps Script Anda yang diakhiri <code>/exec</code>.
+      Deploy harus di-set <b>Who has access: Anyone</b>.
+    </div>
+
+    <div class="btn-group">
+      <button id="btnRefresh" class="btn-secondary" onclick="runRefresh()">
+        🔁 Refresh Data
+      </button>
+      <button id="btnImport" class="btn-primary" onclick="runImport()">
+        ⚡ Update Data
+      </button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <div id="tableWrap" class="table-wrap">
+      <div class="table-header-bar">
+        <span>Hasil Tabel</span>
+        <span class="badge" id="tableBadge">0 baris</span>
+      </div>
+      <div id="filterBar" class="filter-bar"></div>
+      <div class="table-scroll">
+        <table id="resultTable">
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <button id="toTopBtn" onclick="scrollToTop()" title="Kembali ke atas" aria-label="Kembali ke atas">👆</button>
+
+  <script>
+    /* ==========================================================
+     * 🔧 KONFIGURASI — WAJIB DIISI
+     * ========================================================== */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwugzNTOR3qKxa0dpckkwf0ESQM8BhahPe8TjD6waBymcyvanhW9nSnr8XQLa5lnxDQ/exec';
+    // ==========================================================
+
+    /* ====== Breakpoint mobile/tablet ====== */
+    const MOBILE_BREAKPOINT = 900;
+    function isNarrowView() {
+      return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+    function visibleColumnCount(total) {
+      return isNarrowView() ? Math.min(2, total) : total;
+    }
+
+    /* ====== State ====== */
+    let currentTable = null;
+    let sortState    = { colIdx: null, dir: 'asc' };
+    let filterState  = {};
+
+    /* ====== Elemen ====== */
+    const btnImport   = document.getElementById('btnImport');
+    const btnRefresh  = document.getElementById('btnRefresh');
+    const statusEl    = document.getElementById('status');
+    const tableWrap   = document.getElementById('tableWrap');
+    const tableHead   = document.getElementById('tableHead');
+    const tableBody   = document.getElementById('tableBody');
+    const tableBadge  = document.getElementById('tableBadge');
+    const filterBar   = document.getElementById('filterBar');
+    const toTopBtn    = document.getElementById('toTopBtn');
+    const setupBanner = document.getElementById('setupBanner');
+
+    /* ====== Cek URL config ====== */
+    (function checkConfig() {
+      const url = (APPS_SCRIPT_URL || '').trim();
+      if (!url || url.indexOf('http') !== 0) {
+        setupBanner.style.display = 'block';
+        showStatus('error', '❌ URL Apps Script belum diisi. Lihat petunjuk di atas.');
+      }
+    })();
+
+    /* ====== JSONP helper ====== */
+    function jsonpRequest(action, extraParams) {
+      return new Promise((resolve, reject) => {
+        const urlStr = (APPS_SCRIPT_URL || '').trim();
+        if (!urlStr || urlStr.indexOf('http') !== 0) {
+          return reject(new Error('URL Apps Script belum diisi.'));
+        }
+
+        const cbName = 'jsonp_cb_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error('Request timeout (30 detik). Periksa koneksi & deploy.'));
+        }, 30000);
+
+        let script;
+
+        function cleanup() {
+          clearTimeout(timeout);
+          try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+          if (script && script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        window[cbName] = function(data) {
+          cleanup();
+          resolve(data);
+        };
+
+        const params = Object.assign({}, extraParams || {}, {
+          action: action,
+          callback: cbName,
+          _t: Date.now()
+        });
+
+        const sep = urlStr.indexOf('?') === -1 ? '?' : '&';
+        const query = Object.keys(params)
+          .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+          .join('&');
+
+        script = document.createElement('script');
+        script.src = urlStr + sep + query;
+        script.async = true;
+        script.onerror = function() {
+          cleanup();
+          reject(new Error('Gagal memuat endpoint. Periksa URL & pastikan deploy "Anyone".'));
+        };
+        document.body.appendChild(script);
+      });
+    }
+
+    /* ====== Util ====== */
+    function setLoading(btn, isLoading) {
+      if (isLoading) {
+        btn.disabled = true;
+        btn.dataset.original = btn.innerHTML;
+        btn.innerHTML = '<span class="spinner"></span> Memproses...';
+      } else {
+        btn.disabled = false;
+        if (btn.dataset.original) btn.innerHTML = btn.dataset.original;
+      }
+    }
+    function showStatus(type, msg) {
+      statusEl.className = 'status show ' + type;
+      statusEl.innerHTML = msg;
+    }
+    function escapeHtml(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    /* ====== Render ====== */
+    function renderTable(table) {
+      currentTable = table;
+      sortState    = { colIdx: null, dir: 'asc' };
+      filterState  = {};
+      (table.filters || []).forEach(f => { filterState[f.key] = ''; });
+
+      renderHeader();
+      renderFilterBar();
+      applyFilterAndSort();
+      tableWrap.classList.add('show');
+    }
+
+    function renderHeader() {
+      const t = currentTable;
+      if (!t || !t.headers || t.headers.length === 0) {
+        tableHead.innerHTML = '';
+        return;
+      }
+      const maxCols = visibleColumnCount(t.headers.length);
+
+      let html = '<tr>';
+      for (let i = 0; i < maxCols; i++) {
+        const h = t.headers[i];
+        const isSorted = sortState.colIdx === i;
+        const icon = isSorted ? (sortState.dir === 'asc' ? '▲' : '▼') : '⇅';
+        html += `<th class="${isSorted ? 'sorted' : ''}"
+                     onclick="toggleSort(${i})"
+                     title="Klik untuk urutkan">
+                   ${escapeHtml(h)}
+                   <span class="sort-icon">${icon}</span>
+                 </th>`;
+      }
+      // kolom "info" kecil untuk indikator di mobile
+      if (isNarrowView() && t.headers.length > maxCols) {
+        html += `<th style="width:34px;text-align:center;cursor:default;" title="Ketuk baris untuk detail">⋯</th>`;
+      }
+      html += '</tr>';
+      tableHead.innerHTML = html;
+    }
+
+    function toggleSort(colIdx) {
+      if (sortState.colIdx === colIdx) {
+        sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortState.colIdx = colIdx;
+        sortState.dir = 'asc';
+      }
+      renderHeader();
+      applyFilterAndSort();
+    }
+
+    function renderFilterBar() {
+      const t = currentTable;
+      const filters = t.filters || [];
+      if (filters.length === 0) {
+        filterBar.innerHTML = '';
+        filterBar.style.display = 'none';
+        return;
+      }
+      filterBar.style.display = 'flex';
+
+      const items = filters.map(f => {
+        const opts = (t.filterOptions[f.key] || []).map(v =>
+          `<option value="${escapeHtml(v)}">${escapeHtml(v === '' ? '(kosong)' : v)}</option>`
+        ).join('');
+        return `
+          <div class="filter-item">
+            <label>${escapeHtml(f.name)}</label>
+            <select data-key="${f.key}" onchange="onFilterChange(this)">
+              <option value="">Semua</option>
+              ${opts}
+            </select>
+          </div>`;
+      }).join('');
+
+      filterBar.innerHTML = items +
+        `<button class="btn-reset" onclick="clearAllFilters()">🧹 Reset Filter</button>`;
+    }
+
+    function onFilterChange(sel) {
+      const key = parseInt(sel.dataset.key, 10);
+      filterState[key] = sel.value;
+      applyFilterAndSort();
+    }
+
+    function clearAllFilters() {
+      Object.keys(filterState).forEach(k => { filterState[k] = ''; });
+      filterBar.querySelectorAll('select').forEach(s => { s.value = ''; });
+      applyFilterAndSort();
+    }
+
+    function applyFilterAndSort() {
+      const t = currentTable;
+      if (!t) return;
+
+      let rows = t.rows.slice();
+
+      Object.keys(filterState).forEach(k => {
+        const key = parseInt(k, 10);
+        const val = filterState[k];
+        if (val !== '' && val !== null && val !== undefined) {
+          rows = rows.filter(r => (r.f && r.f[key] !== undefined ? r.f[key] : '') === val);
+        }
+      });
+
+      if (sortState.colIdx !== null) {
+        const dir = sortState.dir === 'asc' ? 1 : -1;
+        const ci = sortState.colIdx;
+        rows.sort((a, b) => compareValues(a.d[ci], b.d[ci]) * dir);
+      }
+
+      renderBody(rows);
+    }
+
+    function compareValues(a, b) {
+      const sa = String(a ?? '').trim();
+      const sb = String(b ?? '').trim();
+      const na = parseFloat(sa.replace(',', '.'));
+      const nb = parseFloat(sb.replace(',', '.'));
+      const aIsNum = sa !== '' && !isNaN(na) && isFinite(na);
+      const bIsNum = sb !== '' && !isNaN(nb) && isFinite(nb);
+      if (aIsNum && bIsNum) return na - nb;
+      return sa.localeCompare(sb, 'id', { numeric: true, sensitivity: 'base' });
+    }
+
+    function renderBody(rows) {
+      const t = currentTable;
+      if (!rows || rows.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="${visibleColumnCount(t.headers.length)}" class="empty-msg">
+          Tidak ada data yang cocok.
+        </td></tr>`;
+        tableBadge.textContent = '0 baris · ' + t.headers.length + ' kolom';
+        return;
+      }
+
+      const maxCols = visibleColumnCount(t.headers.length);
+      const hasMore = isNarrowView() && t.headers.length > maxCols;
+
+      tableBody.innerHTML = rows.map(r => {
+        let cells = '';
+        for (let i = 0; i < maxCols; i++) {
+          cells += `<td>${escapeHtml(r.d[i])}</td>`;
+        }
+        if (hasMore) {
+          cells += `<td style="text-align:center;color:#9aa8c7;font-size:14px;">›</td>`;
+        }
+        return `<tr class="clickable">${cells}</tr>`;
+      }).join('');
+
+      // Simpan referensi data baris untuk aksi klik
+      const trs = tableBody.querySelectorAll('tr.clickable');
+      trs.forEach((tr, i) => { tr.__rowData = rows[i]; });
+
+      tableBadge.textContent = rows.length + ' baris · ' + t.headers.length + ' kolom';
+    }
+
+    /* ====== Card Detail (Klik Baris) ====== */
+    function buildDetailCardHtml(t, row) {
+      const items = t.headers.map((h, i) => `
+        <div class="detail-item">
+          <span class="k">${escapeHtml(h)}</span>
+          <span class="v">${escapeHtml(row.d[i] ?? '')}</span>
+        </div>`).join('');
+
+      return `
+        <div class="detail-card">
+          <div class="detail-title">
+            <span>📄 Detail Data</span>
+            <button type="button" class="detail-close">✕ Tutup</button>
+          </div>
+          <div class="detail-grid">${items}</div>
+        </div>`;
+    }
+
+    function closeAllDetailRows() {
+      tableBody.querySelectorAll('tr.detail-row').forEach(el => el.remove());
+      tableBody.querySelectorAll('tr.row-active').forEach(el => el.classList.remove('row-active'));
+    }
+
+    function toggleDetailRow(tr) {
+      const isActive = tr.classList.contains('row-active');
+
+      // Selalu tutup semua card dulu → hanya 1 card yang tampil
+      closeAllDetailRows();
+
+      if (isActive) return; // klik baris yang sama = tutup
+
+      const t = currentTable;
+      if (!t || !tr.__rowData) return;
+
+      const detailTr = document.createElement('tr');
+      detailTr.className = 'detail-row';
+      const td = document.createElement('td');
+      td.colSpan = visibleColumnCount(t.headers.length) + ((isNarrowView() && t.headers.length > visibleColumnCount(t.headers.length)) ? 1 : 0);
+      td.innerHTML = buildDetailCardHtml(t, tr.__rowData);
+      detailTr.appendChild(td);
+
+      tr.parentNode.insertBefore(detailTr, tr.nextSibling);
+      tr.classList.add('row-active');
+    }
+
+    /* Delegasi klik pada tbody */
+    tableBody.addEventListener('click', function(e) {
+      // Tombol Tutup di card
+      if (e.target.closest('.detail-close')) {
+        closeAllDetailRows();
+        return;
+      }
+      const tr = e.target.closest('tr');
+      if (!tr) return;
+      if (tr.classList.contains('detail-row')) return;
+      if (!tr.classList.contains('clickable')) return;
+      toggleDetailRow(tr);
+    });
+
+    /* ====== Handler Tombol ====== */
+    function runImport() {
+      setLoading(btnImport, true);
+      showStatus('loading', '⏳ Mengambil data & memperbarui tabel...');
+
+      jsonpRequest('import')
+        .then(res => {
+          setLoading(btnImport, false);
+          if (res && res.success) {
+            showStatus('success', res.message);
+            renderTable(res.table);
+          } else {
+            showStatus('error', (res && res.message) || 'Gagal import.');
+          }
+        })
+        .catch(err => {
+          setLoading(btnImport, false);
+          showStatus('error', '❌ ' + err.message);
+        });
+    }
+
+    function runRefresh() {
+      setLoading(btnRefresh, true);
+      showStatus('loading', '⏳ Memuat ulang tabel...');
+
+      jsonpRequest('refresh')
+        .then(res => {
+          setLoading(btnRefresh, false);
+          if (res && res.success) {
+            showStatus('success', res.message);
+            renderTable(res.table);
+          } else {
+            showStatus('error', (res && res.message) || 'Refresh gagal.');
+          }
+        })
+        .catch(err => {
+          setLoading(btnRefresh, false);
+          showStatus('error', '❌ ' + err.message);
+        });
+    }
+
+    /* ====== Tombol To The Top ====== */
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!('scrollBehavior' in document.documentElement.style)) {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    }
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > 300) toTopBtn.classList.add('show');
+      else         toTopBtn.classList.remove('show');
+    }, { passive: true });
+
+    /* ====== Re-render saat resize melewati breakpoint ====== */
+    let lastNarrow = isNarrowView();
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const nowNarrow = isNarrowView();
+        if (nowNarrow !== lastNarrow) {
+          lastNarrow = nowNarrow;
+          if (currentTable) {
+            renderHeader();
+            applyFilterAndSort();
+          }
+        }
+      }, 180);
+    });
+  </script>
+</body>
+</html>
